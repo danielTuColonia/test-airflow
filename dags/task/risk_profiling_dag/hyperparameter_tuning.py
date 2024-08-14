@@ -37,6 +37,9 @@ def hyperparameter_tuning(**kwargs):
     print("Ajuste de hiperparámetros completado.")
     print(f"Mejores parámetros encontrados: {grid_search.best_params_}")
 
+    # Guardar los mejores parámetros encontrados en XCom
+    kwargs['ti'].xcom_push(key='best_params', value=grid_search.best_params_)
+    
     # Guardar el mejor modelo encontrado en un archivo usando pickle
     best_model = grid_search.best_estimator_
     model_path = '/tmp/best_model.pkl'
@@ -45,4 +48,3 @@ def hyperparameter_tuning(**kwargs):
     
     # Pasar la ruta del modelo guardado a través de XCom
     kwargs['ti'].xcom_push(key='best_model_path', value=model_path)
-
