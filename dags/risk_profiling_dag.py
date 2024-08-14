@@ -2,12 +2,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 
-# Importar las funciones desde los archivos .py en la carpeta tasks
-from task.risk_profiling_dag.preprocess_data import preprocess_data
-from task.risk_profiling_dag.train_model import train_model
-from task.risk_profiling_dag.evaluate_model import evaluate_model
-from task.risk_profiling_dag.hyperparameter_tuning import hyperparameter_tuning
-from task.risk_profiling_dag.generate_report import generate_report
+
 
 # Definir los argumentos por defecto del DAG
 default_args = {
@@ -31,6 +26,13 @@ install_dependencies = BashOperator(
     bash_command='pip install pandas scikit-learn boto3',
     dag=dag,
 )
+
+# Importar las funciones desde los archivos .py en la carpeta task
+from task.risk_profiling_dag.preprocess_data import preprocess_data
+from task.risk_profiling_dag.train_model import train_model
+from task.risk_profiling_dag.evaluate_model import evaluate_model
+from task.risk_profiling_dag.hyperparameter_tuning import hyperparameter_tuning
+from task.risk_profiling_dag.generate_report import generate_report
 
 # Definir las tareas del DAG utilizando los operadores de Python y las funciones importadas
 preprocess_task = PythonOperator(
