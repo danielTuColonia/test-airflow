@@ -1,4 +1,5 @@
 import pandas as pd
+import pickle
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV, train_test_split
 
@@ -17,7 +18,7 @@ def hyperparameter_tuning(**kwargs):
     # Definir los parámetros para GridSearch
     param_grid = {
         'n_estimators': [100, 200],
-        'max_depth': [ 10, 20],
+        'max_depth': [10, 20],
         'min_samples_split': [2],
         'min_samples_leaf': [2, 4]
     }
@@ -36,6 +37,12 @@ def hyperparameter_tuning(**kwargs):
     print("Ajuste de hiperparámetros completado.")
     print(f"Mejores parámetros encontrados: {grid_search.best_params_}")
 
-    # Guardar el mejor modelo encontrado
+    # Guardar el mejor modelo encontrado en un archivo usando pickle
     best_model = grid_search.best_estimator_
-    kwargs['ti'].xcom_push(key='best_model', value=best_model)
+    model_path = '/tmp/best_model.pkl'
+    with open(model_path, 'wb') as model_file:
+        pickle.dump(best_model, model_file)
+    
+    # Pasar la ruta del modelo guardado a través de XCom
+    kwargs['ti'].xcom_push(key='best_model_path', value=model_path)
+
