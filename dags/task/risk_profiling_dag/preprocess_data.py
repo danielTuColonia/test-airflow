@@ -14,6 +14,10 @@ def preprocess_data(**kwargs):
     
     # Preprocesamiento básico (ajusta según sea necesario)
     data = data.dropna()  # Eliminar filas con valores nulos
+
+    # Codificación de variables categóricas
+    label_encoder = LabelEncoder()
+    data['employment_status'] = label_encoder.fit_transform(data['employment_status'])
     
     # Guardar el resultado para las siguientes tareas
     kwargs['ti'].xcom_push(key='preprocessed_data', value=data.to_dict())
