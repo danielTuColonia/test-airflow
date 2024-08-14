@@ -22,7 +22,7 @@ dag = DAG(
 # Tarea para instalar dependencias
 install_dependencies = BashOperator(
     task_id='install_dependencies',
-    bash_command='pip install pandas scikit-learn boto3 matplotlib seaborn smtplib email numpy',
+    bash_command='pip install pandas scikit-learn boto3 matplotlib seaborn numpy',
     dag=dag,
 )
 
