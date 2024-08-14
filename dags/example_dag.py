@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 import sys
-import os
+import os 
 
 # Ajusta el path para que Airflow pueda encontrar las tareas en la carpeta `task`
 dag_name = os.path.splitext(os.path.basename(__file__))[0]  # 'example_dag'
