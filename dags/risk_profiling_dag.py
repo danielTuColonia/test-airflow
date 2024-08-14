@@ -25,6 +25,13 @@ dag = DAG(
     catchup=False,  # No ejecuta tareas anteriores
 )
 
+# Tarea para instalar dependencias
+install_dependencies = BashOperator(
+    task_id='install_dependencies',
+    bash_command='pip install pandas scikit-learn boto3',
+    dag=dag,
+)
+
 # Definir las tareas del DAG utilizando los operadores de Python y las funciones importadas
 preprocess_task = PythonOperator(
     task_id='preprocess_data',
@@ -62,4 +69,4 @@ report_task = PythonOperator(
 )
 
 # Establecer la secuencia de tareas
-preprocess_task >> tune_task >> train_task >> evaluate_task >> report_task
+install_dependencies >>  preprocess_task >> tune_task >> train_task >> evaluate_task >> report_task
