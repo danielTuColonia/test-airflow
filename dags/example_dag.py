@@ -10,8 +10,8 @@ tasks_path = f"{os.getcwd()}/task/{dag_name}/"
 sys.path.append(tasks_path)
 
 # Importa las tareas desde la carpeta correspondiente
-from task_1 import task_1_function
-from task_2 import task_2_function
+from task.example_dag.task_1 import task_1_function
+from task.example_dag.task_2 import task_2_function
 
 # Define el DAG
 default_args = {
