@@ -19,3 +19,4 @@ def preprocess_data(**kwargs):
     kwargs['ti'].xcom_push(key='preprocessed_data', value=data.to_dict())
 
     print("DG: Se ejecuto satisfactoriamente!")
+    print(data.to_dict())
