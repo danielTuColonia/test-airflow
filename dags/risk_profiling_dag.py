@@ -1,8 +1,7 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
+from airflow.operators.bash_operator import BashOperator  # Importar BashOperator
 from datetime import datetime
-
-
 
 # Definir los argumentos por defecto del DAG
 default_args = {
@@ -71,4 +70,4 @@ report_task = PythonOperator(
 )
 
 # Establecer la secuencia de tareas
-install_dependencies >>  preprocess_task >> tune_task >> train_task >> evaluate_task >> report_task
+install_dependencies >> preprocess_task >> tune_task >> train_task >> evaluate_task >> report_task
