@@ -17,3 +17,5 @@ def preprocess_data(**kwargs):
     
     # Guardar el resultado para las siguientes tareas
     kwargs['ti'].xcom_push(key='preprocessed_data', value=data.to_dict())
+
+    print("DG: Se ejecuto satisfactoriamente!")
