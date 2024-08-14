@@ -1,6 +1,7 @@
 import pandas as pd
 import boto3
 from io import StringIO
+from sklearn.preprocessing import LabelEncoder
 
 def preprocess_data(**kwargs):
     # Parámetros del bucket y archivo
