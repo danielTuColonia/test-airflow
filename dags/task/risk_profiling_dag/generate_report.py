@@ -48,7 +48,7 @@ def generate_report(**kwargs):
     smtp_username = "no.reply.colonia@gmail.com"
     smtp_password = "zfvcqtgcezeupsnd"  # Cambia esto por la contraseña correcta
 
-    recipient = "recipient@example.com"  # Cambia esto por la dirección de correo del destinatario
+    recipient = "dgrassg@gmail.com"  # Cambia esto por la dirección de correo del destinatario
     subject = "Prueba Skandia -Reporte de Clasificación y Matriz de Confusión"
     body = f"""
     Hola,
